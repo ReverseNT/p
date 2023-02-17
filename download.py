@@ -14,7 +14,7 @@ def download_model():
     print("done")
 
     print("downloading tokenizer...")
-    model = AutoModelForCausalLM.from_pretrained("PygmalionAI/pygmalion-6b",revision="dev", torch_dtype=torch.float16, low_cpu_mem_usage=True).to("cuda")
+    model = AutoModelForCausalLM.from_pretrained("PygmalionAI/pygmalion-6b",revision="dev", torch_dtype=torch.float16, low_cpu_mem_usage=True)
     print("done")
 
 if __name__ == "__main__":
