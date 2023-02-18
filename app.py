@@ -22,6 +22,13 @@ def inference(model_inputs:dict) -> dict:
     # Parse out your arguments
     prompt = model_inputs.get('prompt', None)
     max_new = model_inputs.get('max_new_tokens', 10)
+    temperature = model_inputs.get('temperature', 1.0)
+    top_k = model_inputs.get('top_k', 50)
+    top_p = model_inputs.get('top_p', 1.0)
+    repetition_penalty = model_inputs.get('repetition_penalty', 1.0)
+    do_sample = model_inputs.get('do_sample', True)
+    num_return_sequences = model_inputs.get('num_return_sequences', 1)
+    
     if prompt == None:
         return {'message': "No prompt provided"}
     
