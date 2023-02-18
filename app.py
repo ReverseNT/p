@@ -28,7 +28,7 @@ def inference(model_inputs:dict) -> dict:
     repetition_penalty = model_inputs.get('repetition_penalty', 1.0)
     do_sample = model_inputs.get('do_sample', True)
     num_return_sequences = model_inputs.get('num_return_sequences', 1)
-    
+
     if prompt == None:
         return {'message': "No prompt provided"}
     
@@ -36,7 +36,7 @@ def inference(model_inputs:dict) -> dict:
     input_tokens = tokenizer.encode(prompt, return_tensors="pt").to(device)
 
     # Run the model, and set `pad_token_id` to `eos_token_id`:50256 for open-end generation
-    output = model.generate(input_tokens, max_new_tokens=max_new, pad_token_id=50256)
+    output = model.generate(input_tokens, max_new_tokens=max_new, pad_token_id=50256, temperature=temperature, top_k=top_k, top_p=top_p, repetition_penalty=repetition_penalty, do_sample=do_sample, num_return_sequences=num_return_sequences)
 
     # Decode output tokens
     output_text = tokenizer.batch_decode(output, skip_special_tokens = True)[0]
